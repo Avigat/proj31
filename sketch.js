@@ -4,6 +4,7 @@ const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
 
 var engine, world;
+var divisionHeight=300;
 var particles = [];
 var plinkos = [];
 var divisions = [];
@@ -22,12 +23,10 @@ function setup() {
   div6 = new Division(400,635,10,300);
   div7 = new Division(480,635,10,300);*/
 
-}
+  for (var k = 0; k <=width; k = k + 80) { 
+    divisions.push(new Division(k, height-divisionHeight/2, 10, divisionHeight)); 
+  }
 
-function draw() {
-  background(0);  
-  Engine.update(engine);
-  
   for (var j=40; j<=width; j=j+50){
     plinkos.push(new Plinko(j, 75))
   }
@@ -49,9 +48,11 @@ function draw() {
     particles[j].display();
   }
 
-  for (var k=0; k<divisions.length; k++){
-    divisions[k].display();
-  }
+}
+
+function draw() {
+  background(0);  
+  Engine.update(engine);
 
   ground.display();
   /*div1.display();
